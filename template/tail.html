@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+    <title>golang websocket chatroom</title>
+    <base href="/"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <script type="text/javascript" src="static/javascript/jquery.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.css">
+    <script type="text/javascript" src="static/bootstrap/js/bootstrap.js"></script>
+    <script>
+        $(function(){
+            
+        });
+
+        var ws = new WebSocket("ws://{{.Host}}/tailfile?lastMod="+ new Date().getTime() + "&filePath={{.FilePath}}");
+        ws.onopen = function(e){
+            console.log("onopen");
+            console.dir(e);
+        };
+        ws.onmessage = function(e){
+            console.log("onmessage");
+            console.dir(e);
+            var fileData = document.getElementById("log");
+            fileData.textContent = e.data;
+            $('html,body').animate({scrollTop: $(document).height()}, 800);
+        };
+        ws.onclose = function(e){
+            console.log("onclose");
+            console.dir(e);
+        };
+        ws.onerror = function(e){
+            console.log("onerror");
+            console.dir(e);
+        };
+    </script>
+</head>
+<body>
+    <div>
+        <p style="color:red;">tail file: {{.FilePath}}<p>
+    </div>
+    
+    <pre id="log" style="border: 1px solid #CCC;min-height:400px;"></pre>
+</body>
+</html>

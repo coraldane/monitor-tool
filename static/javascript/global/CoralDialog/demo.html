@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <!-- 
+    <base href="<%=basePath%>">
+     -->
+    
+    <title>CoralDialog Demo</title>
+    
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+	<meta http-equiv="description" content="This is my page">
+	<!--
+	<link rel="stylesheet" type="text/css" href="styles.css">
+	-->
+<style type="text/css">
+body {
+	font-size: 12px;
+	MARGIN-TOP: 0px;
+	MARGIN-BOTTOM: 0px;
+	background: #eff4f8;
+	font-weight: normal;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	color: #183778;
+}
+</style>
+	<script type="text/javascript" id="CoralDialog" src="CoralDialog.js"></script>
+  </head>
+  
+  <body>
+    <center><h3>This page show demos for CoralDialog.</h3></center>
+	Open Modeless Dialog:
+	<input type="button" id="button1" size="10" value="Open"/>&nbsp;&nbsp;
+	Close Dialog:
+	<input type="button" id="button2" size="10" value="Close"/>
+	<br/><br/>
+	Open Modelable Dialog:
+	<input type="button" id="button3" size="10" value="Open Sina"/>
+	<br/><br/>
+	Open Dialog with parameters:
+	<input type="button" id="button4" size="10" value="Open cnBeta"/>
+	<br/><br/>
+	Open Dialog with innerHTML:
+	<input type="button" id="button5" size="10" value="Open"/>
+	<br/><br/>
+	<br/><br/>
+	At the end, if you find the dialog is show but the picture file doesn't, please use this JavaScript file as below
+	<br/> and no another element in the HTML page named 'CoralDialog'.
+	<pre style="font-family:Arial;font-size:13px;">&lt;script type="text/javascript" <font color='red'>id="CoralDialog"</font> src="CoralDialog.js"&gt;&lt;/script&gt;</pre>
+  </body>
+<script type="text/javascript">
+var dialog;
+document.getElementById("button1").onclick = function(){
+	dialog = new CoralDialog('Baidu',null,'http://www.baidu.com', 500, 400, false);
+};
+
+document.getElementById("button2").onclick = function(){
+	if(dialog){
+		dialog.hide();
+	}else{
+		alert("Please open an dialog first.");
+	}
+};
+
+document.getElementById("button3").onclick = function(){
+	new CoralDialog('新浪首页',null,'http://www.sina.com.cn/', 600, 600, true);
+};
+
+document.getElementById("button4").onclick = function(){
+	ShowDialog({
+		title:'cnBeta',
+		href:'http://www.cnbeta.com',
+		width:500,
+		height:500,
+		modelable:true,
+		draggable:true
+	});
+};
+
+document.getElementById("button5").onclick = function(){
+	var str = "这里是测试消息内容!";
+	new CoralDialog('文本消息测试',str,null, 300, 200, false, false);
+};
+</script>
+</html>

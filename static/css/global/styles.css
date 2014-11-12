@@ -1,0 +1,153 @@
+@CHARSET "UTF-8";
+
+/**
+Created by Coraldane
+2010-06-16
+Default Css style
+*/
+BODY{font-family: Tahoma,"microsoft yahei","\5FAE\8F6F\96C5\9ED1", Verdana;}
+B{color:red;vertical-align:top;}
+
+input[type="radio"],
+input[type="checkbox"]{
+  zoom: 1.1;
+  line-height: normal;
+  display: inline-block;
+  width:30px;
+  height:30px;
+  min-height: 30px;
+  padding-left: 20px;
+  vertical-align: middle;
+}
+
+.hidden {display:none;}
+
+.tip{background:#f3f3f3;padding:10px;color:#404040;margin-top:5px;margin-bottom:5px;}
+.tip H3{margin-bottom:10px;}
+
+.error{color:#C82424;font-weight:normal;font-size:13px;}
+.info{color:#339e35;font-weight:normal;font-size:13px;}
+.default{color:#aaa;font-weight:normal;font-size:13px;}
+
+input.submit {border: 1px solid;border-color: #FFFDEE #FDB939 #FDB939 #FFFDEE;
+	background: #FFF8C5;color: #090;padding: 0 10px;}
+
+.Wdate{border:#999 1px solid;width:110px;background:url(data:image/gif;base64,R0lGODlhEAAWAPcAAP/+/fr8/vr7/vj6/ff5/fv3+PP2+vP0+fL1+PH0+f3x7u71+O7y++nv9Onu9ejt9ebs+PTm6OTq9ODn8tzm9eHk5OTk4tzl79rj8Nji+9Th/eDh3+Hh4NTi/dnh7tng79fg7tPi79Pi8Nrg7Nfg8Nfh7NTg8ujc397f3NLg+9Pf/c7f9tDe+93d3t7e3N3e29Hd+tHe6tPd683c7tnb2NHc6/PUztrb2dLa6M/a7Mra99bY5dDY483Y6MzW+NLW4//Nv8vX8M3Y5NbX1M7Y4MjW8svX6czX59TW1NTV48zX6dPW18zW6MjX7cfW6dXV0sfW8M3U4sbU9MrU5czU4MXW7MLU9MTV5cTU9dDT1MjU58XU6MXT8tHT08fS5f/Ht8TT6cPS/s/R0b/S98rR2tDR087Q0e7IxcPQ48LQ48vPzrzQ8cHO7MTO4MTO4szOzczNzszNzb/N4MvMzbvN8bnL9b7K4LbK+bzK38nHyrvI3brH3LvH27jH2LDG7q/H8vS5qrbH3dW+w8fBza7F76rF8um4s+y4r7PF2bTE2K/D7LHC2KS/+KTA9aq+5Nu1sO6wnvWtlqm85aC78qa65NqvreStm6C58p648p645tWtp6C14Ji28qizwKixvqWxvqWxvKSxvaixvaWxvaWwvaSvvKKuuqGuuqKqtIuq7JSp05ajsJajsZSjsZKisZKhsJGgsP///wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEHALEALAAAAAAQABYAAAjwAGMJHEiwoMGDCBMqVIhkA40bHIa8eOLiBQoLAAS2ELOkS5YyZuLAmfNGTZ4KAn3AKBIEChs6ivw4kkRpUyaBYVR00MCCxR1GjSZdwsQplUApGXRgSbGGixVCY/4UqqNKYIwBE2oQ6PEgAZMCI0gcQCXwSIk2eGTw2bLjDBBIgpysEsgDgQclBrRQiPBFASBDIVoJJNIAhxcHbkyciGTD0qMZrgRSuTAFzQc7TZJUOqRpEJhXAn8EkABCQA4IDKosELECAyuBUYT02WMkURo5i64gCqQHlkAynU6J8hTqUylQo0qNImVqofPn0KNLjxUQADs=) no-repeat right;}
+
+.download{margin:10px;text-align:left;}
+.download .download_title{font-size:14px;font-weight:bold;margin:5px;}
+.download A{font-size:13px;border:1px solid #c7deed;color:#2654a9;
+padding-top:2px;padding-bottom:2px;padding-left:5px;padding-right:5px;}
+.download A:hover{background:#e9f7ff;text-decoration:none;}
+.download A:visited{color:#2654a9;}
+
+.loading{padding-left:20px;background:url("../../images/global/loader.gif") no-repeat;}
+
+.backTop{position:fixed;right:5px;bottom:80px;
+width:43px;height:43px;z-index:99999;cursor:pointer;
+background:url("../../images/global/topq.jpg") no-repeat;
+opacity:0.8;filter:alpha(opacity=80);
+}
+
+.box{display:none;overflow:hidden;}
+.on{display:block;}
+
+/*top-site*/
+.top{background:#eee;}
+.top-site{background:#f8f8f8;}
+.top-nav{width:1200px;}
+
+/**header*/
+.header{height:64px;width:990px;margin:0 auto;}
+/*background:#eef1f8;*/
+.shop-header{height:80px;}
+.tag-info{font-size:22px;color:#E99625;padding-top:15px;}
+.tag-info .number{font-size:22px;color:#339e35;}
+
+/**sider**/
+.sider{font-size:14px;}
+.tree UL{padding-left:8px;}
+.tree{list-style-type:none;list-style-image:none;margin:0px;border:0px;padding:0px;}
+.tree .fold1{color:#5893b7; font-weight:bold;}
+.tree .fold2{color:#47b; font-weight:normal;}
+.tree span{cursor:pointer;}
+.tree a:link{color:#666;}
+.tree a:hover{color:#00bb00;}
+.tree a.selected{color:#666;}
+.tree a:visited{color:#666;}
+.tree ul{margin-top:4px;}
+.tree .hitarea{background:url(../../images/global/minus.gif) 0 4px no-repeat; height:16px; width:16px; float:left;}
+* html .hitarea{display:inline; float:none;}
+.tree LI {list-style-type:none;border:0px;margin:0px;padding:3px 0px 3px 10px;}
+.tree .expandable-hitarea{background:url(../../images/global/add.gif) 0 4px no-repeat;}
+.tree span.file{padding-left:10px; display:block; background:url(../../images/global/file.gif) 0 6px no-repeat;}
+
+/*footer*/
+.footer{width:100%;height:35px;margin-top:10px;background:#333;}
+.footer-panel{width:1200px;margin:0 auto;padding-top:5px;color:rgba(255, 255, 255, 0.75);}
+.footer A, .footer A:link, .footer A:visited{color:#eee;}
+
+.copyright{text-align:center; padding:10px 0;}
+.copyright a{color:#fff;}
+
+/** 品牌首页的页面主大小 */
+.brand-main{width:1200px;margin:0 auto;}
+.main{/*width:1200px;*/margin:0 auto;padding:10px;}
+.content{width:1200px;margin:0 auto;}
+.main-md{width:768px;margin:0 auto;}
+.main-sm{width:400px;margin:0 auto;}
+
+.block{white-space: nowrap;}
+.no-border >td{border-bottom:0px !important;}
+.no-padding {padding:0px !important;white-space:nowrap !important;}
+.table-nowrap th, .table-nowrap{white-space:nowrap !important;}
+.table-header{background:#E2E4FF;}
+
+.green-color{color:#53A03E;}
+.red-color{color:#f60;}
+.grey-bg{background:#FAFCFC;}
+.green-bg{background-color:#EFF5F8;}
+.green-box{border:1px solid #ACC3E4;padding: 10px;background:#edf5ff;}
+.query{margin: 0 auto;border: 1px solid #cdd7dd;min-height: 60px;background: rgb(235, 241, 246);}
+.hr-dashed{margin:8px 3px;border-bottom: 1px dashed #ddd;}
+
+.span6{padding:5px;}
+.padding10{padding:10px;}
+.padding15{padding:15px;}
+.padding20{padding:20px;}
+.margin5{margin:5px;}
+.margin10{margin:10px;}
+
+.highlight{display: block;padding: 9px 14px;background-color: #f7f7f9;border: 1px solid #e1e1e8;border-radius: 4px;}
+
+
+/**************************Deprecated style Start*****************************/
+.table-input {
+	width:100%;
+	text-align:center;
+	margin: 0px;
+	background: #72A8EC;
+	border-collapse: collapse;
+	border-top:1px solid #C4D5E0;
+	border-left:1px solid #C4D5E0;
+}
+
+.table-input th {
+	white-space: nowrap;
+	text-align: right;
+	font-weight: normal;
+	background: #FAFAFA;
+	border: solid #C4D5E0;
+	border-width: 0 1px 1px 0;
+	padding: 5px;
+}
+
+.table-input td {
+	text-align: left;
+	background: #fff;
+	border: solid #C4D5E0;
+	border-width: 0 1px 1px 0;
+	padding: 5px;
+}
+.table-input TH,.table-input TD{line-height:18px;}
+/**************************Deprecated style End*******************************/

@@ -1,0 +1,105 @@
+<!DOCTYPE>
+<html>
+  <head>
+  	
+    <title>登陆</title>
+	<meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">
+
+	
+	<base href="/"/>
+  	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<script type="text/javascript" src="static/javascript/jquery.min.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="static/bootstrap/css/bootstrap.css">
+	<script type="text/javascript" src="static/bootstrap/js/bootstrap.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="static/css/global/styles.css">
+
+	<script type="text/javascript" src="static/javascript/jquery.plugin/jquery.form.js"></script>
+	<script type="text/javascript" src="static/javascript/global/common/frame.js"></script>
+
+	<script type="text/javascript" src="static/javascript/global/common/json2.js"></script>
+  </head>
+  
+  <body>
+  	<div class="main-sm main-width">
+  		<h1>FastDFS 维护工具</h1>
+  		<h3>Designed by Asiainfo</h3>
+  		<div id="error-span"></div>
+  		<div class="clearfix" style="height:10px;"></div>
+		<div class="green-box" style="width:400px;">
+			<div class="well-lg">
+				<form id="loginForm" class="form-horizontal validate" method="post" errorPlacement="errorPlacement" role="form">
+					<input type="hidden" name="originURL" value="${originURL }"/>
+					<div class="form-group">
+						<div class="col-sm-10">
+							<label class="control-label">您的用户名</label>
+							<input type="text" class="form-control" id="loginName" name="loginName" placeholder="用户名"
+								required="用户名不能为空" validateChar="true">
+							<span class="error"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-10">
+							<label class="control-label">密 码</label>
+							<input type="password" class="form-control" id="loginPassword" name="loginPassword" placeholder="密码"
+								required="密码不能为空" rangelength="[6,20]" onkeypress="javascript:autoSubmit(event);">
+							<span class="error"></span>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-10">
+							<button type="button" class="btn btn-primary btn-lg" style="width:100%" onclick="login();">登 录</button>
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-10">
+							<a href="views/i/FindPassword.jsp" target="_blank" tabindex="6">忘记密码</a>
+							<a class="btn btn-href" href="register">立即注册</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+  </body>
+<script type="text/javascript">
+document.errorPlacement = function(error, element){
+	error.appendTo( element.parent().find(".error") );
+}
+$(document).ready(function(){
+	$("#loginName").focus();
+});
+
+function login(){
+	var validator = $("#loginForm").validate({meta:"validate"});
+	if(validator.form()){
+        $("#loginForm").goAjax({
+    		url: 'login',
+    		data:{},
+    		success: function(jsonData) {
+    			if(true == jsonData.success){
+    				window.location.href = jsonData.message;
+    			} else {
+    				$("#error-span").html('<div class="alert alert-danger">'+jsonData.message+'</div>');
+    			}
+    		}
+    	});
+	}
+}
+
+function autoSubmit(event){
+	if(event.keyCode==13){
+		login();
+	}
+}
+
+function changeValidateCode(obj) {
+	var timenow = new Date().getTime();
+	obj.src = "randomPicture.mi?t=" + timenow;
+	$("#validateTime").val(timenow);
+}
+</script>
+</html>

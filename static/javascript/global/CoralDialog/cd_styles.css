@@ -1,0 +1,57 @@
+BODY {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0px;
+	margin: 0px;
+	font-size: 12px;
+	font-weight:normal;
+}
+
+.dialog {
+	font-size: 12px;
+	margin: 0;
+	padding: 0px;
+	border: 1px solid #aaa;
+	/*border: 1px solid #397EAE;*/
+}
+
+.dialog .dialogTitle {
+	line-height: 22px;
+	text-align:center;
+	font-size: 14px;
+	line-height:28px;
+	background: #f2f2f2;
+	margin: 0;
+	padding: 0;
+	cursor:move;
+}
+TR.dialogTitle{height:22px !important;line-height:22px;}
+
+.dialog .dialogTable {
+	width: 100%;
+	border: 0px;
+	/*height: 100%;*/
+	border-collapse: collapse;
+}
+
+.dialogTitle TH {
+	vertical-align: middle;
+	padding: 3px 8px;
+}
+.dialogTable TABLE TH,.dialogTable TABLE TD{padding:5px;}
+
+.dialogTitle TD {
+	vertical-align: top;
+	padding: 0px;
+}
+.dialogClose A {
+	display:inline-block;
+	width: 19px;
+	height: 19px;
+	line-height:19px;
+	background: url('close.gif') no-repeat 0px 1px;
+}
+
+.dialogClose A:hover {
+	background-position: left -19px;
+}
