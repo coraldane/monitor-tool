@@ -22,7 +22,11 @@
             console.log("onmessage");
             console.dir(e);
             var fileData = document.getElementById("log");
-            fileData.textContent = e.data;
+            if('A' == e.data.charAt(0)){
+                $(fileData).append(e.data);
+            } else {
+                fileData.textContent = e.data.substr(1);
+            }
             $('html,body').animate({scrollTop: $(document).height()}, 800);
         };
         ws.onclose = function(e){

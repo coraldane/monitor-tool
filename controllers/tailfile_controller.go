@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"bytes"
 	"github.com/gorilla/websocket"
+	"io"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -50,20 +52,49 @@ func (action *TailFileController) ServeHTTP(w http.ResponseWriter, r *http.Reque
 	reader(ws)
 }
 
-func readFileIfModified(filename string, lastMod time.Time) ([]byte, time.Time, error) {
+/**
+* @param filename
+* @param offset
+* @param lastMod
+* @return []byte The first character identify: A - append, R - replace.
+* @return time.Time
+* @return error
+ */
+func readFileIfModified(filename string, offset int64, lastMod time.Time) ([]byte, time.Time, int64, error) {
 	fi, err := os.Stat(filename)
 	if err != nil {
 		log.Printf("filename: %s,stat error:%v", err, filename)
-		return nil, lastMod, err
+		return nil, lastMod, offset, err
 	}
-	if !fi.ModTime().After(lastMod) {
-		return nil, lastMod, nil
+	fileSize := fi.Size()
+
+	data := &bytes.Buffer{}
+	if fi.ModTime().After(lastMod) && offset < fileSize && offset > 0 {
+		data.WriteByte('A')
+		file, _ := os.OpenFile(filename, os.O_RDONLY, 0644)
+		defer file.Close()
+
+		p := make([]byte, 1024)
+		for {
+			n, err := file.ReadAt(p, offset)
+			if err != nil && err != io.EOF {
+				return nil, fi.ModTime(), offset, err
+			} else if 0 == n {
+				break
+			}
+			offset += (int64)(n)
+			data.Write(p[:n])
+		}
+	} else {
+		data.WriteByte('R')
+		p, err := ioutil.ReadFile(filename)
+		if err != nil {
+			return nil, fi.ModTime(), offset, err
+		}
+		data.Write(p)
 	}
-	p, err := ioutil.ReadFile(filename)
-	if err != nil {
-		return nil, fi.ModTime(), err
-	}
-	return p, fi.ModTime(), nil
+
+	return data.Bytes(), fi.ModTime(), offset, nil
 }
 
 func reader(ws *websocket.Conn) {
@@ -88,13 +119,14 @@ func writer(ws *websocket.Conn, lastMod time.Time, filename string) {
 		fileTicker.Stop()
 		ws.Close()
 	}()
+	var offset int64
 	for {
 		select {
 		case <-fileTicker.C:
 			var p []byte
 			var err error
 
-			p, lastMod, err = readFileIfModified(filename, lastMod)
+			p, lastMod, offset, err = readFileIfModified(filename, offset, lastMod)
 
 			if err != nil {
 				if s := err.Error(); s != lastError {

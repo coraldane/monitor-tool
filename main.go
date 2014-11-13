@@ -34,5 +34,10 @@ func main() {
 	http.Handle("/cmd", &controllers.CmdController{})
 	http.Handle("/tail", &controllers.TailController{})
 	http.Handle("/tailfile", &controllers.TailFileController{})
-	http.ListenAndServe(":7890", nil)
+	err := http.ListenAndServe(":7890", nil)
+	if nil == err {
+		log.Println("Http Server started at port 7890.")
+	} else {
+		log.Fatal("Server start fail.", err)
+	}
 }
