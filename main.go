@@ -1,7 +1,9 @@
 package main
 
 import (
+	"./conf"
 	"./controllers"
+	"fmt"
 	"log"
 	"net/http"
 	"reflect"
@@ -34,9 +36,11 @@ func main() {
 	http.Handle("/cmd", &controllers.CmdController{})
 	http.Handle("/tail", &controllers.TailController{})
 	http.Handle("/tailfile", &controllers.TailFileController{})
-	err := http.ListenAndServe(":7890", nil)
+
+	port := conf.CONFIG.Port
+	err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
 	if nil == err {
-		log.Println("Http Server started at port 7890.")
+		log.Printf("Http Server started at port %d.", port)
 	} else {
 		log.Fatal("Server start fail.", err)
 	}
