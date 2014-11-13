@@ -15,8 +15,11 @@ func init() {
 	file, _ := os.Open("config.json")
 	buf := make([]byte, 2048)
 
-	n, _ := file.Read(buf)
-	err := json.Unmarshal(buf[:n], &CONFIG)
+	n, err := file.Read(buf)
+	if nil != err {
+		panic(err)
+	}
+	err = json.Unmarshal(buf[:n], &CONFIG)
 	if err != nil {
 		panic(err)
 	}

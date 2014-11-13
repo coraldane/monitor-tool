@@ -37,11 +37,10 @@ func main() {
 	http.Handle("/tail", &controllers.TailController{})
 	http.Handle("/tailfile", &controllers.TailFileController{})
 
-	port := conf.CONFIG.Port
-	err := http.ListenAndServe(fmt.Sprintf(":%d", port), nil)
-	if nil == err {
-		log.Printf("Http Server started at port %d.", port)
-	} else {
+	strPort := fmt.Sprintf(":%d", conf.CONFIG.Port)
+	log.Printf("Http Server start at port %s.", strPort)
+	err := http.ListenAndServe(strPort, nil)
+	if nil != err {
 		log.Fatal("Server start fail.", err)
 	}
 }
