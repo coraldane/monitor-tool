@@ -6,7 +6,8 @@ import (
 )
 
 type Configuration struct {
-	Port int
+	Port           int
+	RegisterServer string
 }
 
 var CONFIG = Configuration{}

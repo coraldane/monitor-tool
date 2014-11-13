@@ -4,10 +4,12 @@ import (
 	"./conf"
 	"./controllers"
 	"fmt"
+	"github.com/coraldane/utils"
 	"log"
 	"net/http"
 	"reflect"
 	"strings"
+	"time"
 )
 
 func loginHandler(w http.ResponseWriter, r *http.Request) {
@@ -38,9 +40,42 @@ func main() {
 	http.Handle("/tailfile", &controllers.TailFileController{})
 
 	strPort := fmt.Sprintf(":%d", conf.CONFIG.Port)
+
+	//register client
+	go registerClient()
+
 	log.Printf("Http Server start at port %s.", strPort)
 	err := http.ListenAndServe(strPort, nil)
 	if nil != err {
 		log.Fatal("Server start fail.", err)
 	}
+}
+
+func registerClient() {
+	timer1 := time.NewTicker(10 * time.Second)
+	for {
+		select {
+		case <-timer1.C:
+			ret := notifyRecordClient()
+			if true == ret {
+				log.Printf("Register client to monitor server success.")
+				timer1.Stop()
+			} else {
+				log.Printf("Register client to monitor server fail, retry after 10 seconds.")
+			}
+		}
+	}
+
+}
+
+func notifyRecordClient() bool {
+	strUrl := fmt.Sprintf("%s?port=%d", conf.CONFIG.RegisterServer, conf.CONFIG.Port)
+	strBody, err := utils.DoGet(strUrl, "UTF-8")
+	if nil == err {
+		log.Printf("register to %s, result is:[%s]", strUrl, strBody)
+		return strings.Contains(strBody, `"success": true`)
+	} else {
+		log.Printf("register to %s, error: %v", strUrl, err)
+	}
+	return false
 }
