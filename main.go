@@ -7,6 +7,7 @@ import (
 	"github.com/coraldane/utils"
 	"log"
 	"net/http"
+	"os"
 	"reflect"
 	"strings"
 	"time"
@@ -33,6 +34,11 @@ func loginHandler(w http.ResponseWriter, r *http.Request) {
 
 func main() {
 	log.SetFlags(log.Lshortfile | log.LstdFlags)
+	logFileWriter, _ := os.OpenFile("monitor.log", os.O_APPEND|os.O_CREATE|os.O_RDWR, 0644)
+
+	// log.SetOutput(io.MultiWriter(logFileWriter, os.Stdout))
+	log.SetOutput(logFileWriter)
+
 	http.Handle("/static/", http.FileServer(http.Dir(".")))
 	http.HandleFunc("/login/", loginHandler)
 	http.Handle("/cmd", &controllers.CmdController{})
@@ -73,7 +79,7 @@ func notifyRecordClient() bool {
 	strBody, err := utils.DoGet(strUrl, "UTF-8")
 	if nil == err {
 		log.Printf("register to %s, result is:[%s]", strUrl, strBody)
-		return strings.Contains(strBody, `"success": true`)
+		return strings.Contains(strBody, `"success":true`)
 	} else {
 		log.Printf("register to %s, error: %v", strUrl, err)
 	}

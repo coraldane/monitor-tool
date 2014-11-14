@@ -1,4 +1,4 @@
 {
 	"Port":7890,
-	"RegisterServer": "http://20.26.17.230:6400/fastdfs/registerClient"
+	"RegisterServer": "http://20.21.19.64:6400/fastdfs/registerClient"
 }
