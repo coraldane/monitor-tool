@@ -1,8 +1,8 @@
 package main
 
 import (
-	"./conf"
-	"./controllers"
+	"conf"
+	"controllers"
 	"fmt"
 	"github.com/coraldane/utils"
 	"log"
