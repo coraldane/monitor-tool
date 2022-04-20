@@ -1,10 +1,10 @@
 package main
 
 import (
-	"./conf"
 	"encoding/binary"
 	"fmt"
-	"github.com/codeskyblue/go-uuid"
+	"github.com/coraldane/monitor-tool/conf"
+	"github.com/coraldane/toolkits/encode"
 	"log"
 	"net"
 	"os"
@@ -79,7 +79,7 @@ func parsePackageHead(headBuf []byte) (string, uint32) {
 func assignConnection(conn net.Conn) (bool, *ClientInfo, error) {
 	cli := new(ClientInfo)
 	cli.Conn = conn
-	cli.AssignId = uuid.New()
+	cli.AssignId = encode.GetUUID()
 	cli.GmtConnect = time.Now()
 	cli.HostIp, cli.HostPort, _ = net.SplitHostPort(conn.LocalAddr().String())
 	cli.ClientIp, cli.ClientPort, _ = net.SplitHostPort(conn.RemoteAddr().String())

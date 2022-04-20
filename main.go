@@ -1,10 +1,10 @@
 package main
 
 import (
-	"conf"
-	"controllers"
 	"fmt"
-	"github.com/coraldane/utils"
+	"github.com/coraldane/monitor-tool/conf"
+	"github.com/coraldane/monitor-tool/controllers"
+	"github.com/coraldane/toolkits/httplib"
 	"log"
 	"net/http"
 	"os"
@@ -76,8 +76,9 @@ func registerClient() {
 
 func notifyRecordClient() bool {
 	strUrl := fmt.Sprintf("%s?port=%d", conf.CONFIG.RegisterServer, conf.CONFIG.Port)
-	strBody, err := utils.DoGet(strUrl, "UTF-8")
+	body, err := httplib.Get(strUrl)
 	if nil == err {
+		strBody := string(body)
 		log.Printf("register to %s, result is:[%s]", strUrl, strBody)
 		return strings.Contains(strBody, `"success":true`)
 	} else {
